@@ -1,0 +1,12 @@
+<div ng-repeat = "kitten in kittens">
+  Hi! I'm a kitten named {{ kitten.name }}. 
+
+  <!-- Click to view the kitten's partial -->
+  <a ui-sref = "kittens.show( { kittenId:kitten.id } )">
+    Feature kitten
+  </a>
+
+</div>
+
+<h3>Featured Kitten:</h3>
+<div ui-view>None</div>

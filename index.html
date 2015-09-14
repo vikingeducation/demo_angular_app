@@ -1,0 +1,62 @@
+<!doctype html>
+<html ng-app = "sampleApp" >
+  <head>
+    <title>My Angular App</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js" ></script>
+    <script src = "app.js" ></script>
+  </head>
+  <body >
+
+    <h1>Angular Demo App</h1>
+
+
+    <!-- Kittens! -->
+    <div>
+
+      <a ui-sref="kittens">
+        View kittens!
+      </a>
+      <br>
+      <a ui-sref="default">
+        No kittens!
+      </a>
+
+      <div ui-view>
+      </div>
+    </div>
+
+
+    <div ng-controller = "ItemCtrl" >
+
+      <h2>Non-Routed Kittens (ItemCtrl)</h2>
+      <!-- <table>
+        <tr item-row ng-repeat = "item in items" item = "item" ></tr>
+      </table> -->
+
+      <ul>
+        <li ng-repeat = "kitten in kittens" ng-click = "removeKitten( kitten )" ng-model = "kitten" >
+          {{ kitten.name }}
+        </li>
+      </ul>
+
+      <button ng-click = "removeOddKittens()">
+        Remove Odd Kittens
+      </button>
+
+    </div>
+
+    <!-- Angular Controllers -->
+    <script src = "controllers/item_controller.js" ></script>
+    <script src = "controllers/kitten_controller.js" ></script>
+
+    <!-- Angular Directives -->
+    <script src = "directives/item_row.js" ></script>
+
+    <!-- Angular Services -->
+    <script src = "services/kitten_service.js" ></script>
+
+    <!-- Vendor -->
+    <script src = "vendor/ui_router.js"></script>
+
+  </body>
+</html>
