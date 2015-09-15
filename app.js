@@ -15,11 +15,44 @@ sampleApp.config(function($stateProvider, $urlRouterProvider){
     })
 
 
+    // ************* UNRESOLVED *************** 
+    // Our kittens index
+    // .state('kittens', {
+    //   url: '/kittens',
+    //   templateUrl: 'templates/kittens.html',
+    //   controller:  'KittenCtrl',
+    // })
+
+
+    // // Our specific kitten (nested)
+    // .state('kittens.show', {
+    //   url: '/:kittenId',
+    //   templateUrl: 'templates/kitten.html',
+    //   controller:  'KittenCtrl',
+    // })
+
+
+    // ************* RESOLVED *************** 
     // Our kittens index
     .state('kittens', {
       url: '/kittens',
       templateUrl: 'templates/kittens.html',
-      controller:  'KittenCtrl',
+      controller:  'KittenResolveCtrl',
+      resolve: {
+        kittens: function( kittenService ){
+          // The `kittenService.allKittens` method
+          //   returns a promise, like all `$http`
+          //   methods
+          return kittenService.allKittens();
+        },
+
+        // Make sure we've set our Kitten, even though
+        //    we don't need it for this view, because
+        //    the controller will otherwise get very mad.
+        kitten: function(){
+          return undefined;
+        }
+      }
     })
 
 
@@ -27,7 +60,18 @@ sampleApp.config(function($stateProvider, $urlRouterProvider){
     .state('kittens.show', {
       url: '/:kittenId',
       templateUrl: 'templates/kitten.html',
-      controller:  'KittenCtrl',
-      // parent: 'kittens'
+      controller:  'KittenResolveCtrl',
+      resolve: {
+        // We do NOT need `kittens` because it is inherited
+        //    from the parent 'kittens' route.
+        // We DO need to override our individual kitten
+        kitten: function( $stateParams, kittenService ){
+
+          // `kittenService.find` also returns a promise
+          return kittenService.getKitten( $stateParams.kittenId );
+        },
+      }
     })
+
+
 });

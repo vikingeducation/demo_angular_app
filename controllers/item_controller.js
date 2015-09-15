@@ -1,5 +1,5 @@
 sampleApp.controller("ItemCtrl",
-  ['$scope', 'kittenService', function($scope, kittenService){
+  ['$scope', 'oldKittenService', function($scope, oldKittenService){
 
     $scope.items = [ 
       { name: "Item1" },
@@ -7,16 +7,16 @@ sampleApp.controller("ItemCtrl",
       { name: "Item3" } 
     ]
 
-    $scope.kittens = kittenService.getKittens();
+    $scope.kittens = oldKittenService.getKittens();
 
     $scope.removeKitten = function( kitten ){
       console.log( "removing kitten " + kitten.name  )
-      kittenService.removeKitten( kitten );
+      oldKittenService.removeKitten( kitten );
     }
 
     $scope.removeOddKittens = function(){
-      $scope.kittens = kittenService.removeOddKittensBroken();
-      // kittenService.removeOddKittensFixed();
+      $scope.kittens = oldKittenService.removeOddKittensBroken();
+      // oldKittenService.removeOddKittensFixed();
     }
 
 

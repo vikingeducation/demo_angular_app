@@ -1,56 +1,46 @@
-sampleApp.service('kittenService', function(){
-  
-  var kittens = [ 
-      {name: "kitten1"}, 
-      {name: "kitten2"},
-      {name: "kitten3"},
-      {name: "kitten4"},
-      {name: "kitten5"},
-      {name: "kitten6"},
-    ];
+sampleApp.service('kittenService', ['$http', function( $http ){
 
-  var getKittens = function(){
-    return kittens;
-  }
 
-  var removeKitten = function( kitten ){
-    var index = kittens.indexOf( kitten );
-    kittens.splice( index, 1);
+  // This returns a promise with `then` callbacks
+  //   already specified
+  var getKitten = function( id ){
+    return $http.get( "http://reqr.es/api/kittens/" + id ).
+      then( function( response ){
+        var data = response.data.data;
+        return { name: data.name, id: data.id }
+      }, function(){
+        console.log("FAIL");
+        return undefined
+      })
   }
 
 
-  // BROKEN: This overwrites `kittens` so now
-  //   the digest loop has forgotten about it
-  var removeOddKittensBroken = function(){
-    var newKittens = []
-    kittens.forEach( function( kitten ){
-      var kittenNum = kitten.name[kitten.name.length - 1];
-      if( kittenNum % 2 == 0 ){
-        newKittens.push( kitten )
-      }
-    });
-    return newKittens;
-  }
+  // This returns a promise with `then` callbacks
+  //   already specified
+  var allKittens = function(){
+    return $http.get( "http://reqr.es/api/kittens" ).
+      then( function( response ){
+        var kittens = []
 
+        // Cycle through the returned kittens
+        //   and set their properties
+        response.data.data.forEach( function( el ){
+          kittens.push( { name: el.name, id: el.id } )
+        })
 
-  // FIXED: Now we destructively modify the
-  //   original collection
-  var removeOddKittensFixed = function(){
-    kittens.forEach( function( kitten ){
-      var kittenNum = kitten.name[kitten.name.length - 1];
-      if( kittenNum % 2 != 0 ){
-        removeKitten( kitten );
-      }
-    })
+        return kittens;
+
+      }, function(){
+        console.log("FAIL");
+        return undefined
+      })
   }
 
 
   // Revealing Module Pattern!
   return {
-    getKittens: getKittens,
-    removeOddKittensBroken: removeOddKittensBroken,
-    removeOddKittensFixed: removeOddKittensFixed,
-    removeKitten: removeKitten,
+    getKitten: getKitten,
+    allKittens: allKittens,
   }
 
-});
+}]);

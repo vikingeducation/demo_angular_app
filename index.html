@@ -7,7 +7,7 @@
   </head>
   <body >
 
-    <h1>Angular Demo App</h1>
+    <h1>Kittens AngularJS Demo App</h1>
 
 
     <!-- Kittens! -->
@@ -26,34 +26,18 @@
     </div>
 
 
-    <div ng-controller = "ItemCtrl" >
-
-      <h2>Non-Routed Kittens (ItemCtrl)</h2>
-      <!-- <table>
-        <tr item-row ng-repeat = "item in items" item = "item" ></tr>
-      </table> -->
-
-      <ul>
-        <li ng-repeat = "kitten in kittens" ng-click = "removeKitten( kitten )" ng-model = "kitten" >
-          {{ kitten.name }}
-        </li>
-      </ul>
-
-      <button ng-click = "removeOddKittens()">
-        Remove Odd Kittens
-      </button>
-
-    </div>
 
     <!-- Angular Controllers -->
     <script src = "controllers/item_controller.js" ></script>
     <script src = "controllers/kitten_controller.js" ></script>
+    <script src = "controllers/kitten_resolve_controller.js" ></script>
 
     <!-- Angular Directives -->
     <script src = "directives/item_row.js" ></script>
 
     <!-- Angular Services -->
     <script src = "services/kitten_service.js" ></script>
+    <script src = "services/old_kitten_service.js" ></script>
 
     <!-- Vendor -->
     <script src = "vendor/ui_router.js"></script>
