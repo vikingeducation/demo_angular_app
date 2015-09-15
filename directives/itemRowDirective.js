@@ -1,6 +1,6 @@
 sampleApp.directive('itemRow', function(){
   return {
-    templateUrl: "directives/item_row.html",
+    templateUrl: "directives/itemRowTemplate.html",
     restrict: "AE",
     scope: {
         item: "="

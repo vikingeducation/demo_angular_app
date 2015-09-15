@@ -24,7 +24,7 @@ sampleApp.config(function($stateProvider, $urlRouterProvider){
     // })
 
 
-    // // Our specific kitten (nested)
+    // // Our specific kitten
     // .state('kittens.show', {
     //   url: '/:kittenId',
     //   templateUrl: 'templates/kitten.html',
