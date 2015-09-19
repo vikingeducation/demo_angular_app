@@ -1,10 +1,15 @@
 sampleApp.controller("ItemCtrl",
   ['$scope', 'oldKittenService', function($scope, oldKittenService){
 
-    $scope.items = [ 
+    var someObj = { name: "ItemN"};
+    $scope.items = [
       { name: "Item1" },
       { name: "Item2" },
-      { name: "Item3" } 
+      { name: "Item2" },
+      { name: "Item3" },
+      // someObj,
+      { name: "Item4" },
+      someObj, 
     ]
 
     $scope.kittens = oldKittenService.getKittens();

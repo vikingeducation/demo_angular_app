@@ -10,34 +10,69 @@ sampleApp.config(function($stateProvider, $urlRouterProvider){
     // A default state
     .state('default', {
       url: '/default',
-      templateUrl: 'templates/default.html',
       controller:  'KittenCtrl',
+      views: {
+        '': {
+          templateUrl: 'templates/default.html',
+        },
+        'filters@default': {
+          templateUrl: 'templates/reportFilters.html'
+        }
+      }
     })
 
+    .state('dashboard',{
+      url: '/dashboard',
+      // templateUrl: 'templates/dashboard.html',
+      controller: function($scope){ console.log(" /dashboard")},
+      // templateUrl: 'templates/dashboard.html',
+      views: {
+        '': {
+          templateUrl: 'templates/dashboard.html',
+          controller: function(){ console.log( "unnamed view")}
+        },
+        // 'filters': {
+        //   templateUrl: 'templates/reportFilters.html',
+        //   controller: function($scope){ console.log("FILTERS") }
+        // },
+        // 'tabledata': {
+        //   templateUrl: 'templates/reportTable.html',
+        //   controller: function($scope){ console.log("TABLE DATA") }
+        // },
+        // 'graph': {
+        //   templateUrl: 'templates/reportGraph.html',
+        //   controller: function($scope){ console.log("GRAPH") }
+        // }
+      }
+    })
 
-    // ************* UNRESOLVED *************** 
-    // Our kittens index
-    // .state('kittens', {
-    //   url: '/kittens',
-    //   templateUrl: 'templates/kittens.html',
-    //   controller:  'KittenCtrl',
-    // })
-
-
-    // // Our specific kitten
-    // .state('kittens.show', {
-    //   url: '/:kittenId',
-    //   templateUrl: 'templates/kitten.html',
-    //   controller:  'KittenCtrl',
-    // })
+    .state('dashboard.reports', {
+      url: '/reports',
+      views: {
+        '': {
+          templateUrl: 'templates/reports.html'
+        },
+        'filters': {
+          templateUrl: 'templates/reportFilters.html',
+          controller: function($scope){ console.log("FILTERS") }
+        },
+        'tabledata': {
+          templateUrl: 'templates/reportTable.html',
+          controller: function($scope){ console.log("TABLE DATA") }
+        },
+        'graph@dashboard.reports': {
+          templateUrl: 'templates/reportGraph.html',
+          controller: function($scope){ console.log("GRAPH") }
+        }
+      }
+    })
 
 
     // ************* RESOLVED *************** 
     // Our kittens index
     .state('kittens', {
       url: '/kittens',
-      templateUrl: 'templates/kittens.html',
-      controller:  'KittenResolveCtrl',
+      // templateUrl: 'templates/kittens.html',
       resolve: {
         kittens: function( kittenService ){
           // The `kittenService.allKittens` method
@@ -51,6 +86,16 @@ sampleApp.config(function($stateProvider, $urlRouterProvider){
         //    the controller will otherwise get very mad.
         kitten: function(){
           return undefined;
+        }
+      },
+      views: {
+        '': {
+          controller:  'KittenResolveCtrl',
+          templateUrl: "templates/kittens.html",
+        },
+        'sidebar': {
+          controller:  'KittenResolveCtrl',
+          templateUrl: "templates/sidebar.html"
         }
       }
     })
@@ -73,5 +118,22 @@ sampleApp.config(function($stateProvider, $urlRouterProvider){
       }
     })
 
+
+
+    // ************* UNRESOLVED *************** 
+    // Our kittens index
+    // .state('kittens', {
+    //   url: '/kittens',
+    //   templateUrl: 'templates/kittens.html',
+    //   controller:  'KittenCtrl',
+    // })
+
+
+    // // Our specific kitten
+    // .state('kittens.show', {
+    //   url: '/:kittenId',
+    //   templateUrl: 'templates/kitten.html',
+    //   controller:  'KittenCtrl',
+    // })
 
 });

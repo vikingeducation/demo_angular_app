@@ -1,3 +1,12 @@
+<h3>Kittens Route (/#/kittens)</h3>
+
+<div>
+  &nbsp;&nbsp; someObj.someVar is: {{  someObj.someVar }}
+  <br>
+  &nbsp;&nbsp;Modify it: <input ng-model = " someObj.someVar" type="text">
+</div>
+
+<h4>ng-repeat List of Kittens:</h4>
 <div ng-repeat = "kitten in kittens">
   Hi! I'm a kitten named {{ kitten.name }}. 
 
@@ -6,7 +15,20 @@
     Feature kitten
   </a>
 
+  <div>
+    &nbsp;&nbsp;someObj.someVar is: {{ someObj.someVar }}
+    <br>
+    &nbsp;&nbsp;Modify it: <input ng-model = "someObj.someVar" type="text">
+  </div>
+
 </div>
 
+<hr>
+
+<hr>
+
 <h3>Featured Kitten:</h3>
-<div ui-view>None</div>
+<div ui-view>I should be replaced by a kitten when one is selected...</div>
+
+<hr>
+<h3>By the way, I'm still part of the KITTENS state!</h3>

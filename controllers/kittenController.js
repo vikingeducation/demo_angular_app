@@ -1,8 +1,6 @@
 sampleApp.controller("KittenCtrl",
   ['$scope', '$stateParams', '$http', function($scope, $stateParams, $http){
 
-    console.log( $stateParams );
-
     $scope.kittenId = $stateParams.kittenId;
 
     // Retrieve a sample Kitten from reqr.es

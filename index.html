@@ -20,12 +20,29 @@
       <a ui-sref="default">
         No kittens!
       </a>
+      <a ui-sref="dashboard">
+        Dashboard
+      </a>
+      <a ui-sref = "dashboard.reports">
+        Dashboard Reports
+      </a>
 
+      <div ui-view = "sidebar">I should be replaced by a sidebar...</div>
       <div ui-view>
       </div>
+
+      <div ui-view = "filters">eh filters?</div>
+
     </div>
 
 
+    <!--
+    <div ng-controller = "ItemCtrl">
+      <div ng-repeat = "item in items | unique:'name'">
+        {{ item.name }}
+      </div>
+    </div>
+    -->
 
     <!-- Angular Controllers -->
     <script src = "controllers/itemController.js" ></script>
@@ -38,6 +55,10 @@
     <!-- Angular Services -->
     <script src = "services/kittenService.js" ></script>
     <script src = "services/oldKittenService.js" ></script>
+    <script src = "services/storageService.js" ></script>
+
+    <!-- Filters -->
+    <script src = "filters/uniqueFilter.js" ></script>
 
     <!-- Vendor -->
     <script src = "vendor/uiRouter.js"></script>
